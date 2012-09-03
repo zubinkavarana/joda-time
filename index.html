@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Joda-time by zubinkavarana</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Joda-time</h1>
+        <p class="header">Joda-Time is the widely used replacement for the Java date and time classes. Home page and downloads at Sourceforge.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/zubinkavarana/joda-time/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/zubinkavarana/joda-time/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/zubinkavarana/joda-time">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/zubinkavarana">zubinkavarana</a></p>
+
+
+      </header>
+      <section>
+        <h2>The Persian Calendar for Joda</h2>
+
+<p>This project is a fork of <a href="https://github.com/JodaOrg/joda-time">Joda Time</a> that adds a Joda-Time Persian Chronology and different implementations of the <a href="http://en.wikipedia.org/wiki/Iranian_calendars">Persian calendar</a> based on various different <a href="http://en.wikipedia.org/wiki/Intercalation">intercalation</a> methods that have been proposed for the <a href="http://en.wikipedia.org/wiki/Iranian_calendars">Persian calendar</a>. The project also adds <a href="http://en.wikipedia.org/wiki/Julian_day">Julian day and JDN</a> support to the Joda <a href="http://joda-time.sourceforge.net/apidocs/org/joda/time/DateTime.html">DateTime</a> class.</p>
+
+<p><em>What follows is an introduction to the <a href="http://en.wikipedia.org/wiki/Iranian_calendars">Persian calendar</a>, and an explanation of the classes added to Joda for Persian chronology support.</em></p>
+
+<h2>What is a <a href="http://en.wikipedia.org/wiki/Solar_calendar">Solar Calendar</a>?</h2>
+
+<p>A <a href="http://en.wikipedia.org/wiki/Calendar">calendar</a> is a way of grouping days to signify the passage of time in relation to a certain purpose ~ religious, commercial, mixed purposes etc. <a href="http://en.wikipedia.org/wiki/Calendar">Calendars</a> have been used through the ages to aid in the agricultural cycles, and to celebrate festivals. The <a href="http://en.wikipedia.org/wiki/Solar_calendar">solar calender</a> closely aligns the length of a year in days to the length of time it takes for the earth to revolve around the sun once. </p>
+
+<p><a href="http://en.wikipedia.org/wiki/Solar_calendar">Solar calenders</a> are further divided into <a href="http://en.wikipedia.org/wiki/Tropical_year">tropical</a> and <a href="http://en.wikipedia.org/wiki/Solar_calendar#Sidereal_solar_calendars">sidereal</a>. For a <a href="http://en.wikipedia.org/wiki/Solar_calendar#Tropical_solar_calendars">tropical solar calendar</a> the <a href="http://en.wikipedia.org/wiki/Tropical_year">tropical year</a> is reckoned by observing the passing of time between two successive March or two successive September <a href="http://en.wikipedia.org/wiki/Equinox">equinoxes</a> - usually the March <a href="http://en.wikipedia.org/wiki/Equinox">equinox</a> (called the Vernal equinox in the northern hemisphere, and Autumnal equinox in the southern hemisphere) is used as it signifies the beginning of spring in the northern hemisphere. </p>
+
+<p>The <a href="http://en.wikipedia.org/wiki/Equinox">equinox</a> is a key concept in understanding the Persian chronology. An equinox is that exact time when the north pole and south pole of the earth are equidistant from the sun. The sun is directly overhead the Earth's equator and the length of day and night on this day are almost equal. </p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Earth-lighting-equinox_EN.png/800px-Earth-lighting-equinox_EN.png" alt="http://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Earth-lighting-equinox_EN.png/800px-Earth-lighting-equinox_EN.png"></p>
+
+<p><a href="http://www.timeanddate.com/calendar/march-equinox.html">timeanddate.com</a> have a page that describes the March equinox, and you can find further reading on the net or in your favorite encyclopedia. On an <strong>average</strong> it takes 365.242 days from one <a href="http://en.wikipedia.org/wiki/Equinox">Vernal</a> equinox to the next. Calendars compensate for the fraction of time of the day by having normal years with 365 days, and occasional leap years with 366 days. The <a href="http://en.wikipedia.org/wiki/Gregorian_calendar">Gregorian calendar</a> for example, inserts a leap year every 4 years (except for century years not divisible by 400).</p>
+
+<h2>The Persian Jalaali Calendar</h2>
+
+<p>If you understand the concept of the solar tropical calendar, it's easy to understand how the <a href="http://en.wikipedia.org/wiki/Iranian_calendars">Jalaali</a> calendar works. The calendar is an observational calendar; At the end of every Jalaali year (the 19th or the 20th or March of every Gregorian year), the Vernal equinox occurs. The exact time of the equinox is recorded - if the time is before 12 PM of the day Iran Standard Time the same day from 12 AM (00 hours) is declared to be the first day of the new year. If the equinox occurs after 12 PM the next day starting 12 AM (00 hours) hours is the first day of the next year (i.e. a leap year just passed by!). It is the observational character of the calendar that lends to it's accuracy (Jalaali is one of the most accurate solar calendars),</p>
+
+<p><strong>but this is also the source of much confusion/argument about the calendars intercalation mechanism.</strong> </p>
+
+<p>Administrative and commercial activities require knowledge of the calendar for future years, and to know whether they may be leap or not. To fulfill this a purely mathematical method is needed that comes close to the actual leap year cycle. Various mathematical formulas have been devised by different people or organizations to predict the leap years of the Jalaali calendar. Each methods accuracy is time-boxed (i.e at some point in the future there will be an error in the formula) because of - </p>
+
+<ol>
+<li>irregularities in the earths rotation</li>
+<li>
+<a href="http://en.wikipedia.org/wiki/Tidal_acceleration">tidal acceleration</a> that slows the rate of the earths rotation, therefore increasing the length of days</li>
+<li>certain events that <strong>may</strong> suddenly affect the Earth's angle of rotation, for example it was reported that a recent tsunami had shifted the earths axis by a small amount</li>
+</ol><h2>Joda Persian Chronologies</h2>
+
+<p>The <a href="http://joda-time.sourceforge.net/apidocs/org/joda/time/DateTime.html">DateTime</a> class in Joda is instantiated with a chronology that controls the effect of operations on your DateTime instances - for example the output of plusMonths(7) will be different for Persian dates and Gregorian dates. Here's an example from the Joda sourceforge page on how a chronology is used - </p>
+
+<pre><code>DateTimeZone zone = DateTimeZone.forID("Europe/London");
+Chronology coptic = CopticChronology.getInstance(zone);
+
+// current time with coptic chronology
+DateTime dt = new DateTime(coptic);
+
+int year = dt.getYear();   // gets the current coptic year
+int month = dt.getMonthOfYear(); // gets the current coptic month
+</code></pre>
+
+<p>This project adds the Jalaali calendar to Joda by introducing the abstract Persian chronology class, and four different concrete implementations for the Persian chronology (you can extend PersianChronology  to add your own). </p>
+
+<p>_The reason these varied implementations are provided is because different formulas have already been implemented in various existing software programs, and in using the Jalaali calendar in your software you may be compelled to consider the existing formulas in use in older software you are upgrading or other software services you have to integrate with.</p>
+
+<p>_<a href="https://github.com/zubinkavarana/joda-time/blob/master/src/site/resources/images/PersianChrono.png">Class hierarchy diagram</a>. The org.joda.time.chrono.PersianChronology class is an abstract class that extends org.joda.time.chrono.BasicChronology and provides a base implementation leaving concrete classes to provide 3 details -</p>
+
+<ol>
+<li>The average length of the year</li>
+<li>Is a given Persian year leap and </li>
+<li>The start milliseconds of the year</li>
+</ol><h3>Equinox times based on equations by Jean Meeus</h3>
+
+<p>The <strong>org.joda.time.chrono.PersianChronologyMeeus</strong> class implements a leap year cycle that is based on the exact Spring equinox instant calculated from formulas published by Jean Meeus. The date times produced match equinox times published <a href="http://ns1763.ca/equinox/vern2188-2547.html">here</a> and have an error factor of + or - 1 minute. You can also double check this from previous equinox times published at <a href="http://aa.usno.navy.mil/data/docs/EarthSeasons.php/">USNO</a>. The class considers the Iran Standard Time as the longitude by default, and there is getInstance method that accepts the longitude in it's parameters in case you need to override this. Some points to ponder if you are considering using this implementation - </p>
+
+<ul>
+<li>This class is in my opinion the most accurate implementation for the Persian chronology, but is also the slower in performance because of the calculations to arrive at the Spring equinox. In general it is good practice to test your application for performance, in case you have such test cases you can measure if the performance is acceptable to you or not</li>
+<li>You have a choice of which longitude to use when instantiating the chronology</li>
+<li>Since the equinoxes of the future have been calculated using astronomical-mathematic formulas, they have a margin of error (around a minute) and the calendar may fail for years where the equinox time is within a minute of 12 PM.</li>
+</ul><h3>Omar Khayyam's 33 year cycle</h3>
+
+<p>The <strong>org.joda.time.chrono.PersianChronologyKhayyam</strong> class implements a leap year cycle proposed by Persian mathematician Omar Khayyam which is similar to the Gregorian calendar in that it uses a leap year once every four years, but differs in that once in a 33 year cycle it will assign a leap year on the fifth rather than fourth year. The leap years are
+those with a remainder (after dividing by 33) of 1, 5, 9, 13, 17, 22, 26, and 30. Some points to ponder if you are considering using this implementation - </p>
+
+<ul>
+<li>Khayyam's formula is calculated to be accurate with the March equinoxes from 1799 AD to 2256 AD (<a href="http://www.astro.uni.torun.pl/%7Ekb/Papers/EMP/PersianC-EMP.htm">source</a>).</li>
+<li>Khayyam seemed to have used a longitude of 51degrees 25minutes 33seconds (Tehran longitude) to judge the equinox. That is <em>not</em> the longitude used today, and this may affect the accuracy on years where the equinox occurs within a few minutes of 12 PM.</li>
+<li>This is the formula implemented in .Net (<a href="http://msdn.microsoft.com/en-us/library/system.globalization.persiancalendar%28v=vs.80%29.aspx">source msdn</a>), so consider this when integrating your software with programs written in .Net.</li>
+</ul><h3>K. Borkowski's break years based on Omar Khayyam's 33 year cycle</h3>
+
+<p>The <strong>org.joda.time.chrono.PersianChronologyKhayyamBorkowski</strong> class implements a leap year cycle proposed by Polish astronomer Kazimierz M. Borkowski, who further refined Khayyam's formula by using published equinox times based on formulas of Jean Meeus to find when the Khayyam formula breaks, and adding in exception routines to handle these years separately thus extending the validity of the formula for 3000 years. His paper is published <a href="http://www.astro.uni.torun.pl/%7Ekb/Papers/EMP/PersianC-EMP.htm">here</a>. Some points to ponder if you are considering using this implementation - </p>
+
+<ul>
+<li>The Tehran longitude has been used by Borkowski, meaning that on years when the equinox time is close to 12 PM Iran Standard Time the formula may fail.</li>
+<li>Meeus's algorithms used to approximate the equinox times have a error margin of + or - 1 minute, so on years where the equinox will occur very close to 12 PM, there may be a failure of the formula.</li>
+</ul><h3>Ahmad Birashk's 2820 year cycle</h3>
+
+<p>The <strong>org.joda.time.chrono.PersianChronologyBirashk</strong> class implements a leap year cycle proposed by Ahmad Birashk which uses a grand cycle of 2820 years, divided into sub cycles of 128 and 132 years, further divided into 33 and 29 year cycles (<a href="http://www.tondering.dk/claus/cal/persian.php">source</a>). The calendar's accuracy is worse than Khayyams and fails as early as 2025 AD. Some points to ponder if you are considering using this implementation - </p>
+
+<ul>
+<li>The formula is considered on many sites as the Persian modern calendar and is implemented in various software,  <a href="http://www.opensource.apple.com/source/emacs/emacs-54/emacs/lisp/calendar/cal-persia.el?txt">Emacs</a> being one example. The relevance is again when interfacing with existing software using this formula.</li>
+<li>The formula uses the Tehran longitude as a basis of approximating equinoxes, like the Khayyam formula.</li>
+</ul><h3>Why did we write so many implementations?</h3>
+
+<p>In one word - Legacy. People often write code in silos and have used any one of the given formulas. But in real world usage applications will have to talk to each other at some point (for example think of an ATM network software sending messages to a legacy core banking system), and the difference in dates is best handled by providing a chronology for each of these styles, allowing you to validate and convert between them easily.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
