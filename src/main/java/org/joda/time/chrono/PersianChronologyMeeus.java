@@ -207,12 +207,12 @@ public class PersianChronologyMeeus extends PersianChronology {
                     - ((66.0 + (isoYear - 2000) * 1.0) / 86400.0);
             int secondsToCorrect = getDeltaT(isoYear, 3).intValue();
             if (secondsToCorrect > 0) {
-                return DateTimeUtils.julianDayToISODateTimeAtUTC(julianDayTerrestrialTime).minusSeconds(secondsToCorrect);
+                return new DateTime(ISOChronology.getInstanceUTC()).withMillis(DateTimeUtils.fromJulianDay(julianDayTerrestrialTime)).minusSeconds(secondsToCorrect);
             } else if (secondsToCorrect < 0) {
                 secondsToCorrect = -1 * secondsToCorrect;
-                return DateTimeUtils.julianDayToISODateTimeAtUTC(julianDayTerrestrialTime).plusSeconds(secondsToCorrect);
+                return new DateTime(ISOChronology.getInstanceUTC()).withMillis(DateTimeUtils.fromJulianDay(julianDayTerrestrialTime)).plusSeconds(secondsToCorrect);
             } else {
-                return DateTimeUtils.julianDayToISODateTimeAtUTC(julianDayTerrestrialTime);
+                return new DateTime(ISOChronology.getInstanceUTC()).withMillis(DateTimeUtils.fromJulianDay(julianDayTerrestrialTime));
             }
         }
 

@@ -106,7 +106,7 @@ public class PersianChronologyBirashk extends PersianChronology {
     @Override
     long calculateFirstDayOfYearMillis(int persianYear) {
         double julianDay = convertPersianDateToJulianDay(persianYear);
-        return DateTimeUtils.julianDayToISODateTimeAtUTC(julianDay).getMillis();
+        return DateTimeUtils.fromJulianDay(julianDay);
     }
 
     private double convertPersianDateToJulianDay(int year) {

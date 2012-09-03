@@ -3,6 +3,9 @@ package org.joda.time.chrono;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
+
 import org.joda.time.Chronology;
 import org.joda.time.DateTime;
 import org.joda.time.DateTime.Property;
@@ -54,11 +57,11 @@ public class TestPersianChronologyBirashk extends TestCase {
 
     private final DateTime persianEpochGreg = new DateTime(622, 3, 22, 0, 0, 0, 0, GREG_UTC);
 
-    // 2002-06-09
-    private final long TEST_TIME_NOW = (y2002days + 31L + 28L + 31L + 30L + 31L + 9L - 1L) * MILLIS_PER_DAY;
-
     long y2002days = 365 + 365 + 366 + 365 + 365 + 365 + 366 + 365 + 365 + 365 + 366 + 365 + 365 + 365 + 366 + 365 + 365 + 365
             + 366 + 365 + 365 + 365 + 366 + 365 + 365 + 365 + 366 + 365 + 365 + 365 + 366 + 365;
+    
+    // 2002-06-09
+    private final long TEST_TIME_NOW = (y2002days + 31L + 28L + 31L + 30L + 31L + 9L - 1L) * MILLIS_PER_DAY;
 
     public TestPersianChronologyBirashk(String name) {
         super(name);
@@ -76,7 +79,7 @@ public class TestPersianChronologyBirashk extends TestCase {
     }
 
     @Override
-    protected void tearDown() throws Exception {
+    protected void tearDown() throws Exception { 
         DateTimeUtils.setCurrentMillisSystem();
         DateTimeZone.setDefault(originalDateTimeZone);
         TimeZone.setDefault(originalTimeZone);
