@@ -152,7 +152,7 @@
 
 <!-- ====================================================================== -->
 
-  <target name="installjunit" unless="junit.ant">
+  <target name="installjunit" unless="junit.present">
     <echo message="Installing junit in ${ant.home}/lib"/>
   	<copy file="${junit.jar}" todir="${ant.home}/lib" />
     <echo message="***************************************************************"/>

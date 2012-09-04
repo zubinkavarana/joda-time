@@ -7,3 +7,8 @@ src/tz-data/
 *TempTest*
 /test-output/
 /.settings/
+.classpath
+.project
+build.xml
+checkstyle.xml
+.checkstyle
